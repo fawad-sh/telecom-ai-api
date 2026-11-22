@@ -1,4 +1,4 @@
-# Telecom AI API - DevOps Demo
+# Telecom AI API - DevOps k8s Demo
 
 A production-style FastAPI service for a Telecom operator, with full CI/CD, Docker, Kubernetes, Autoscaling and Monitoring.
 
@@ -26,7 +26,9 @@ git push -> GitHub Actions (test + scan + build) -> Docker Image -> Kubernetes D
 docker build -t telecom-ai-api .
 docker run -p 8000:8000 telecom-ai-api
 curl http://localhost:8000/health
-Quick Start - Kubernetes (Day 2)
+```
+## Quick Start Kubernetes
+
 kind create cluster --name telecom-demo
 docker build -t telecom-ai-api .
 kind load docker-image telecom-ai-api --name telecom-demo
@@ -34,12 +36,31 @@ kubectl apply -f k8s/
 kubectl get pods
 kubectl port-forward svc/telecom-ai-api 8080:80
 curl http://localhost:8080/health
-What I Verified
-CI pipeline green on every push to mainTrivy scan for Docker image vulnerabilities2 pods running with liveness + readiness probesSelf-healing: Deleted pod auto-recreated by K8sManual scale: 2 -> 4 -> 2 pods verifiedRollback: kubectl rollout undo verifiedHPA: Autoscale 2-5 pods on 70% CPUCommands for Demobashkubectl get pods
+
+---
+## What I Verified
+- [x] CI pipeline 🚦 green on every push to main  🚀
+- [x] Trivy scan for Docker image vulnerabilities
+- [x] 2 pods running with liveness + readiness probes
+- [x] Self-healing: Deleted pod auto-recreated by K8s
+- [x] Manual scale: 2 -> 4 -> 2 pods verified
+- [x] Rollback: kubectl rollout undo verified
+- [x] HPA: Autoscale 2-5 pods on 70% CPU
+
+---
+## Commands for Demo
+```bash
+kubectl get pods
 kubectl delete pod <pod-name> # watch it self-heal
 kubectl scale deployment telecom-ai-api --replicas=4
-kubectl rollout undo deployment/telecom-ai-apiProject Structurejavascriptapp/main.py - FastAPI app
+kubectl rollout undo deployment/telecom-ai-api
+```
+---
+## Project Structure
+app/main.py - FastAPI app
 tests/ - pytest
 Dockerfile
-.github/workflows/ci-cd.yml - CI pipeline
-k8s/ - deployment, service, configmap, secret, hpa 
+.github/workflows/ci-cd.yml 
+- CI pipeline k8s/
+- deployment, service, configmap, secret, hpa
+
