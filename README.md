@@ -57,10 +57,10 @@ kubectl rollout undo deployment/telecom-ai-api
 ```
 ---
 ## Project Structure
-app/main.py - FastAPI app
-tests/ - pytest
-Dockerfile
-.github/workflows/ci-cd.yml 
+- app/main.py - FastAPI app
+- tests/ - pytest
+- Dockerfile
+### .github/workflows/ci-cd.yml 
 - CI pipeline k8s/
 - deployment, service, configmap, secret, hpa
 
