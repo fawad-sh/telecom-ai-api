@@ -15,6 +15,6 @@ jobs:
       - name: Build Docker Image
         run: docker build -t telecom-ai-api .
       - name: Scan with Trivy
-        uses: aquasecurity/trivy-action@0.20.0
+        uses: aquasecurity/trivy-action@v0.20.0
         with:
           image-ref: 'telecom-ai-api'
